@@ -58,6 +58,22 @@ def get_person_order_dict(path, name):
     return orders_dict
 
 
+def get_days_dict_most_frequent(path):
+    answer = read_csv(path)
+
+    days_dict = {}
+    for order in answer:
+        if order[2] in days_dict:
+            days_dict[order[2]] += 1
+        else:
+            days_dict[order[2]] = 1
+    most_frequent = list(days_dict.keys())[0]
+    for item in days_dict.keys():
+        if days_dict[item] > days_dict[most_frequent]:
+            most_frequent = item
+    return most_frequent
+
+
 def get_order_most_frequent(path, name):
     person_dict = get_person_order_dict(path, name)
     most_ordered = list(person_dict.keys())[0]

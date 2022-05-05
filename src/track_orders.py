@@ -50,7 +50,27 @@ class TrackOrders:
         return days-person_days
 
     def get_busiest_day(self):
-        pass
+        days_dict = {}
+        for order in self.orders:
+            if order[2] in days_dict:
+                days_dict[order[2]] += 1
+            else:
+                days_dict[order[2]] = 1
+        most_frequent = list(days_dict.keys())[0]
+        for item in days_dict.keys():
+            if days_dict[item] > days_dict[most_frequent]:
+                most_frequent = item
+        return most_frequent
 
     def get_least_busy_day(self):
-        pass
+        days_dict = {}
+        for order in self.orders:
+            if order[2] in days_dict:
+                days_dict[order[2]] += 1
+            else:
+                days_dict[order[2]] = 1
+        least_frequent = list(days_dict.keys())[0]
+        for item in days_dict.keys():
+            if days_dict[item] < days_dict[least_frequent]:
+                least_frequent = item
+        return least_frequent
